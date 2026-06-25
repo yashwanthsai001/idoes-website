@@ -1,40 +1,47 @@
 import React, { useMemo, useState } from "react";
 import { ArrowRight, RotateCcw } from "lucide-react";
 
+// Easy to edit: each option = { label, base: [min, max] }.
+// Timeline & budget act as multipliers; result is floored to base[0].
 const steps = [
   {
     key: "need",
     title: "What do you need?",
     options: [
-      { label: "WEBSITE", base: [80000, 250000] },
-      { label: "MOBILE APP", base: [200000, 800000] },
-      { label: "BRANDING", base: [50000, 200000] },
-      { label: "VIDEO / REELS", base: [40000, 150000] },
+      { label: "BASIC BUSINESS WEBSITE", base: [10000, 20000] },
+      { label: "PREMIUM CUSTOM WEBSITE", base: [20000, 28000] },
+      { label: "E-COMMERCE WEBSITE", base: [20000, 35000] },
+      { label: "CUSTOM WEB APP", base: [30000, 60000] },
+      { label: "MOBILE APP", base: [50000, 80000] },
+      { label: "LOGO DESIGN", base: [2000, 5000] },
+      { label: "BRANDING PACKAGE", base: [10000, 25000] },
+      { label: "VIDEO EDITING", base: [1000, 5000] },
+      { label: "REEL SHOOTING & EDITING", base: [5000, 15000] },
     ],
   },
   {
     key: "timeline",
     title: "What's your timeline?",
     options: [
-      { label: "ASAP (RUSH)", mult: 1.4 },
-      { label: "4–6 WEEKS", mult: 1.0 },
-      { label: "2–3 MONTHS", mult: 0.9 },
-      { label: "FLEXIBLE", mult: 0.85 },
+      { label: "ASAP (RUSH)", mult: 1.3 },
+      { label: "1–2 WEEKS", mult: 1.0 },
+      { label: "3–4 WEEKS", mult: 0.95 },
+      { label: "FLEXIBLE", mult: 0.9 },
     ],
   },
   {
     key: "budget",
     title: "Budget range?",
     options: [
-      { label: "STARTUP", mult: 0.7 },
+      { label: "STARTUP", mult: 0.9 },
       { label: "GROWTH", mult: 1.0 },
-      { label: "ESTABLISHED", mult: 1.4 },
-      { label: "ENTERPRISE", mult: 2.0 },
+      { label: "ESTABLISHED", mult: 1.2 },
+      { label: "ENTERPRISE", mult: 1.5 },
     ],
   },
 ];
 
-const fmt = (n) => "₹" + n.toLocaleString("en-IN");
+const fmt = (n) => "₹" + Math.round(n).toLocaleString("en-IN");
 
 export default function Estimator() {
   const [answers, setAnswers] = useState({});
@@ -51,7 +58,9 @@ export default function Estimator() {
     if (!answers.need || !answers.timeline || !answers.budget) return null;
     const [lo, hi] = answers.need.base;
     const m = answers.timeline.mult * answers.budget.mult;
-    return [Math.round((lo * m) / 1000) * 1000, Math.round((hi * m) / 1000) * 1000];
+    const loF = Math.max(lo, Math.round((lo * m) / 500) * 500);
+    const hiF = Math.max(loF, Math.round((hi * m) / 500) * 500);
+    return [loF, hiF];
   }, [answers]);
 
   const reset = () => {
@@ -109,8 +118,8 @@ export default function Estimator() {
             <p className="font-display text-white mt-3" style={{ fontSize: "clamp(36px, 5.5vw, 84px)" }}>
               {fmt(range[0])} <span className="text-[#2457FF]">–</span> {fmt(range[1])}
             </p>
-            <p className="text-white/70 text-sm lg:text-base mt-3 max-w-xl">
-              Ballpark for {answers.need.label.toLowerCase()}, {answers.timeline.label.toLowerCase()} timeline. Final scope confirmed in a 20-minute call.
+            <p className="text-white/60 text-xs lg:text-sm mt-5 max-w-2xl leading-relaxed">
+              These are estimated starting prices. Final pricing depends on project scope, features, timeline, and specific requirements.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <a href="#contact" className="btn-primary cta-text">

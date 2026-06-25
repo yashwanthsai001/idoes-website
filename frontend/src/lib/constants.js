@@ -1,14 +1,15 @@
 export const LOGO_URL = "https://customer-assets.emergentagent.com/job_76dcac64-6245-4fa0-9206-f5b5b98f8f0b/artifacts/wocz35f4_Blue%20and%20Black%20Minimalist%20Brand%20Logo%20%287%29%202%20%282%29.png";
 
-export const WHATSAPP_NUMBER = "919876543210"; // placeholder, no '+' or spaces
+export const WHATSAPP_NUMBER = "916304199686"; // no '+' or spaces
+export const WHATSAPP_DISPLAY = "+91 63041 99686";
 export const WHATSAPP_MSG = encodeURIComponent("Hi IDOES — I'd like to talk about a project.");
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
-export const EMAIL = "hello@idoes.studio";
+export const EMAIL = "idoescreative@gmail.com";
 
 export const SOCIALS = {
-  instagram: "https://instagram.com/idoes.studio",
-  linkedin: "https://linkedin.com/company/idoes",
+  instagram: "https://www.instagram.com/idoes.in?igsh=bzV5cHJzcTlycnFl&utm_source=qr",
+  linkedin: "https://www.linkedin.com/in/yashwanth-sai-b6047b227/",
   whatsapp: WHATSAPP_URL,
 };
 

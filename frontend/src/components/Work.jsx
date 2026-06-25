@@ -1,74 +1,102 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import BeforeAfter from "./BeforeAfter";
+import {
+  BusinessSiteMock,
+  EcommerceMock,
+  MobileAppMock,
+  BrandIdentityMock,
+  LogoMock,
+  LandingPageMock,
+} from "./PortfolioMocks";
 
+// Easy to swap later: replace `mock` with <img src="…" /> for real screenshots.
 const projects = [
   {
-    title: "NEUE LABS",
-    tags: ["WEBSITE REDESIGN", "BRANDING"],
-    gradient: "linear-gradient(135deg, #2457FF 0%, #0A0A0A 100%)",
-    accent: "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 50%)",
+    title: "AURELIO & CO.",
+    subtitle: "Premium Business Website",
+    tags: ["WEBSITE", "DESIGN"],
+    year: "2025",
+    mock: <BusinessSiteMock />,
   },
   {
-    title: "OAK & ROOT",
-    tags: ["BRAND IDENTITY"],
-    gradient: "linear-gradient(160deg, #14143A 0%, #2457FF 100%)",
-    accent: "radial-gradient(circle at 80% 80%, rgba(255,255,255,0.16), transparent 55%)",
+    title: "MAISON NOIR",
+    subtitle: "E-commerce Storefront",
+    tags: ["E-COMMERCE", "BRANDING"],
+    year: "2025",
+    mock: <EcommerceMock />,
   },
   {
-    title: "FRAME 24",
+    title: "PULSE FINANCE",
+    subtitle: "Mobile App UI/UX",
     tags: ["MOBILE APP", "UI/UX"],
-    gradient: "linear-gradient(135deg, #050505 0%, #2457FF 100%)",
-    accent: "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.12), transparent 60%)",
+    year: "2025",
+    mock: <MobileAppMock />,
   },
   {
-    title: "VOLTA MOTION",
-    tags: ["LOGO ANIMATION"],
-    gradient: "linear-gradient(180deg, #2457FF 0%, #050505 100%)",
-    accent: "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.18), transparent 50%)",
+    title: "ATELIER 09",
+    subtitle: "Brand Identity System",
+    tags: ["BRAND IDENTITY"],
+    year: "2024",
+    mock: <BrandIdentityMock />,
   },
   {
-    title: "STUDIO KORA",
-    tags: ["WEBSITE", "VIDEO"],
-    gradient: "linear-gradient(120deg, #0A0A0A 0%, #2457FF 100%)",
-    accent: "radial-gradient(circle at 60% 30%, rgba(255,255,255,0.14), transparent 55%)",
+    title: "VOLTA",
+    subtitle: "Logo Design & Animation",
+    tags: ["LOGO", "MOTION"],
+    year: "2024",
+    mock: <LogoMock />,
   },
   {
-    title: "MOON & MARROW",
-    tags: ["BRANDING", "WEBSITE"],
-    gradient: "linear-gradient(135deg, #1A1A1A 0%, #2457FF 100%)",
-    accent: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.18), transparent 55%)",
+    title: "ORBIT LABS",
+    subtitle: "Landing Page Design",
+    tags: ["LANDING PAGE"],
+    year: "2025",
+    mock: <LandingPageMock />,
   },
 ];
 
 function ProjectCard({ p, large, index }) {
   return (
     <div
-      data-testid={`project-${p.title.replace(/\s+/g, "-").toLowerCase()}`}
-      className={`group relative overflow-hidden border border-[#E5E5E5] bg-[#0A0A0A] ${large ? "lg:col-span-2 lg:row-span-2 aspect-square lg:aspect-auto" : "aspect-[4/5]"}`}
+      data-testid={`project-${p.title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`}
+      className={`group relative overflow-hidden border border-[#E5E5E5] bg-white ${
+        large ? "lg:col-span-2 lg:row-span-2 aspect-square lg:aspect-auto" : "aspect-[4/5]"
+      }`}
     >
-      <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ background: p.gradient }} />
-      <div className="absolute inset-0" style={{ background: p.accent }} />
-      <div className="absolute inset-0 opacity-30 mix-blend-overlay" style={{
-        backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
-      }} />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#2457FF]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Mock area */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]">
+          {p.mock}
+        </div>
+      </div>
 
-      {/* index number badge */}
-      <span className="absolute top-5 left-5 cta-text text-white/60 z-10" style={{ fontSize: 10 }}>
+      {/* index */}
+      <span className="absolute top-5 left-5 cta-text text-[#0A0A0A]/50 z-10" style={{ fontSize: 10 }}>
         / {String(index).padStart(2, "0")}
       </span>
+      <span className="absolute top-5 right-5 cta-text text-[#0A0A0A]/50 z-10" style={{ fontSize: 10 }}>
+        {p.year}
+      </span>
 
-      <div className="relative h-full p-7 flex flex-col justify-end z-10">
-        <div className="flex flex-wrap gap-2 mb-4">
+      {/* hover overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <div className="absolute inset-x-0 bottom-0 z-10 p-6 lg:p-7 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+        <div className="flex flex-wrap gap-2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           {p.tags.map((t) => (
-            <span key={t} className="cta-text text-white/80 border border-white/20 px-3 py-1 text-[10px] backdrop-blur-sm">
+            <span key={t} className="cta-text text-white/80 border border-white/30 px-2.5 py-1 text-[10px] backdrop-blur-sm">
               [ {t} ]
             </span>
           ))}
         </div>
-        <h4 className="font-display-bold text-white text-3xl">{p.title}</h4>
-        <p className="cta-text text-white/0 group-hover:text-white/80 transition-all mt-2 -translate-y-1 group-hover:translate-y-0">
+        <p className="cta-text text-white/0 group-hover:text-white/80 transition-colors" style={{ fontSize: 11 }}>
+          {p.subtitle.toUpperCase()}
+        </p>
+        <h4 className="font-display-bold text-white/0 group-hover:text-white text-2xl lg:text-3xl mt-1 transition-colors">
+          {p.title}
+        </h4>
+        <p className="cta-text text-white/0 group-hover:text-white/70 transition-colors mt-2">
           VIEW CASE STUDY →
         </p>
       </div>
@@ -118,7 +146,11 @@ export default function Work() {
           <BeforeAfter />
         </div>
 
-        <a href="#contact" data-testid="work-cta" className="cta-text mt-16 inline-flex items-center gap-3 border border-[#0A0A0A] text-[#0A0A0A] px-6 py-4 hover:bg-[#0A0A0A] hover:text-white transition-all">
+        <a
+          href="#contact"
+          data-testid="work-cta"
+          className="cta-text mt-16 inline-flex items-center gap-3 border border-[#0A0A0A] text-[#0A0A0A] px-6 py-4 hover:bg-[#0A0A0A] hover:text-white transition-all"
+        >
           <ArrowRight size={16} strokeWidth={2.5} /> SEE ALL PROJECTS
         </a>
       </div>
