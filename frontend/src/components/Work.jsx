@@ -1,109 +1,143 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import BeforeAfter from "./BeforeAfter";
-import {
-  BusinessSiteMock,
-  EcommerceMock,
-  MobileAppMock,
-  BrandIdentityMock,
-  LogoMock,
-  LandingPageMock,
-} from "./PortfolioMocks";
 
-// Easy to swap later: replace `mock` with <img src="…" /> for real screenshots.
-const projects = [
+/* ──────────────────────────────────────────────────────────────────────────
+ * PORTFOLIO PROJECTS
+ * Easy to edit: just modify the array below.
+ * Each project: { image, title, category, description }
+ * To add: append a new object. To remove: delete one. To reorder: drag.
+ * To swap an image: replace the `image` URL.
+ * ────────────────────────────────────────────────────────────────────────── */
+export const PROJECTS = [
   {
-    title: "AURELIO & CO.",
-    subtitle: "Premium Business Website",
-    tags: ["WEBSITE", "DESIGN"],
-    year: "2025",
-    mock: <BusinessSiteMock />,
+    image: "https://customer-assets.emergentagent.com/job_idoes-preview/artifacts/16f9vsik_Cover-1.png",
+    title: "SHOP.CO",
+    category: "E-Commerce Website",
+    description: "A premium fashion e-commerce platform with homepage, product detail, category, and cart flows — built mobile-first.",
+    objectPosition: "center",
   },
   {
-    title: "MAISON NOIR",
-    subtitle: "E-commerce Storefront",
-    tags: ["E-COMMERCE", "BRANDING"],
-    year: "2025",
-    mock: <EcommerceMock />,
+    image: "https://customer-assets.emergentagent.com/job_idoes-preview/artifacts/cjz0e82a_Thumbnail%201.png",
+    title: "PAYPILOT",
+    category: "Mobile App UI/UX",
+    description: "Digital banking experience for a fintech challenger — onboarding, dashboard, transactions, and 24/7 support.",
+    objectPosition: "center",
   },
   {
-    title: "PULSE FINANCE",
-    subtitle: "Mobile App UI/UX",
-    tags: ["MOBILE APP", "UI/UX"],
-    year: "2025",
-    mock: <MobileAppMock />,
+    image: "https://customer-assets.emergentagent.com/job_idoes-preview/artifacts/pvthrgsn_Cover.png",
+    title: "FITZ UI",
+    category: "App UI System",
+    description: "A modular dark-mode component system for fintech and lifestyle apps — finance widgets, call screens, payment cards.",
+    objectPosition: "center",
   },
   {
-    title: "ATELIER 09",
-    subtitle: "Brand Identity System",
-    tags: ["BRAND IDENTITY"],
-    year: "2024",
-    mock: <BrandIdentityMock />,
+    image: "https://customer-assets.emergentagent.com/job_idoes-preview/artifacts/q9um9wps_Thumbnail.jpg",
+    title: "WEB DESIGNS",
+    category: "UI/UX Design Portfolio",
+    description: "A multi-product portfolio showcasing SaaS landing pages, app interfaces, and a robust reusable component library.",
+    objectPosition: "center",
   },
   {
-    title: "VOLTA",
-    subtitle: "Logo Design & Animation",
-    tags: ["LOGO", "MOTION"],
-    year: "2024",
-    mock: <LogoMock />,
-  },
-  {
-    title: "ORBIT LABS",
-    subtitle: "Landing Page Design",
-    tags: ["LANDING PAGE"],
-    year: "2025",
-    mock: <LandingPageMock />,
+    image: "https://customer-assets.emergentagent.com/job_idoes-preview/artifacts/8a938bvf_file%20cover%20-%201%201.png",
+    title: "CREATIVE DESIGN",
+    category: "Agency Landing Page",
+    description: "A bold creative-agency landing built around large editorial typography, immersive artwork, and lead-gen flow.",
+    objectPosition: "center",
   },
 ];
 
-function ProjectCard({ p, large, index }) {
+/* ──────────────────────────────────────────────────────────────────────────
+ * Reusable Project Card — 16:9, image-first, premium hover.
+ * ────────────────────────────────────────────────────────────────────────── */
+export function ProjectCard({ project, index }) {
+  const { image, title, category, description, objectPosition = "center" } = project;
   return (
-    <div
-      data-testid={`project-${p.title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`}
-      className={`group relative overflow-hidden border border-[#E5E5E5] bg-white ${
-        large ? "lg:col-span-2 lg:row-span-2 aspect-square lg:aspect-auto" : "aspect-[4/5]"
-      }`}
+    <article
+      data-testid={`project-${title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`}
+      className="group relative w-full overflow-hidden bg-[#F2F2F2] border border-[#E5E5E5]"
     >
-      {/* Mock area */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]">
-          {p.mock}
+      {/* 16:9 image area */}
+      <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
+        <img
+          src={image}
+          alt={`${title} — ${category}`}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.04]"
+          style={{ objectPosition }}
+        />
+
+        {/* index tag */}
+        <span
+          className="absolute top-5 left-5 cta-text text-white/85 z-10 backdrop-blur-sm bg-black/30 px-2 py-1"
+          style={{ fontSize: 10 }}
+        >
+          / {String(index).padStart(2, "0")}
+        </span>
+
+        {/* category chip top-right */}
+        <span
+          className="absolute top-5 right-5 cta-text text-white/90 z-10 backdrop-blur-sm bg-black/30 border border-white/15 px-3 py-1"
+          style={{ fontSize: 10 }}
+        >
+          [ {category.toUpperCase()} ]
+        </span>
+
+        {/* Hover gradient + content */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/95 via-[#0A0A0A]/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 z-10 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
+          <p
+            className="cta-text text-[#2457FF] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{ fontSize: 11 }}
+          >
+            [ {category.toUpperCase()} ]
+          </p>
+          <h3 className="font-display text-white text-3xl lg:text-5xl mt-2 leading-[0.95] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75">
+            {title}
+          </h3>
+          <p className="text-white/80 text-sm lg:text-base mt-3 max-w-xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
+            {description}
+          </p>
+          <span className="mt-5 inline-flex items-center gap-2 cta-text text-white border-b border-white/60 pb-1 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+            VIEW PROJECT <ArrowUpRight size={14} strokeWidth={2.5} />
+          </span>
         </div>
       </div>
 
-      {/* index */}
-      <span className="absolute top-5 left-5 cta-text text-[#0A0A0A]/50 z-10" style={{ fontSize: 10 }}>
-        / {String(index).padStart(2, "0")}
-      </span>
-      <span className="absolute top-5 right-5 cta-text text-[#0A0A0A]/50 z-10" style={{ fontSize: 10 }}>
-        {p.year}
-      </span>
-
-      {/* hover overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-      <div className="absolute inset-x-0 bottom-0 z-10 p-6 lg:p-7 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-        <div className="flex flex-wrap gap-2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          {p.tags.map((t) => (
-            <span key={t} className="cta-text text-white/80 border border-white/30 px-2.5 py-1 text-[10px] backdrop-blur-sm">
-              [ {t} ]
-            </span>
-          ))}
+      {/* Default (non-hover) caption strip below image, for clarity on touch devices */}
+      <div className="flex items-center justify-between gap-4 px-5 lg:px-6 py-4 border-t border-[#E5E5E5] bg-white group-hover:bg-[#0A0A0A] transition-colors duration-500">
+        <div className="min-w-0">
+          <p className="cta-text text-[#2457FF] group-hover:text-[#2457FF] transition-colors" style={{ fontSize: 10 }}>
+            [ {category.toUpperCase()} ]
+          </p>
+          <h4 className="font-display-bold text-[#0A0A0A] group-hover:text-white text-xl lg:text-2xl mt-1 truncate transition-colors">
+            {title}
+          </h4>
         </div>
-        <p className="cta-text text-white/0 group-hover:text-white/80 transition-colors" style={{ fontSize: 11 }}>
-          {p.subtitle.toUpperCase()}
-        </p>
-        <h4 className="font-display-bold text-white/0 group-hover:text-white text-2xl lg:text-3xl mt-1 transition-colors">
-          {p.title}
-        </h4>
-        <p className="cta-text text-white/0 group-hover:text-white/70 transition-colors mt-2">
-          VIEW CASE STUDY →
-        </p>
+        <span className="shrink-0 w-10 h-10 rounded-full bg-[#0A0A0A] group-hover:bg-[#2457FF] text-white flex items-center justify-center transition-all duration-500 group-hover:rotate-45">
+          <ArrowUpRight size={16} strokeWidth={2.5} />
+        </span>
       </div>
+    </article>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * Reusable Portfolio Grid — drop in anywhere.
+ * ────────────────────────────────────────────────────────────────────────── */
+export function PortfolioGrid({ projects = PROJECTS }) {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+      {projects.map((p, i) => (
+        <ProjectCard key={`${p.title}-${i}`} project={p} index={i + 1} />
+      ))}
     </div>
   );
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+ * Section
+ * ────────────────────────────────────────────────────────────────────────── */
 export default function Work() {
   return (
     <section id="work" className="relative section-light py-28 lg:py-40 overflow-hidden">
@@ -133,13 +167,8 @@ export default function Work() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <ProjectCard p={projects[0]} large index={1} />
-          <ProjectCard p={projects[1]} index={2} />
-          <ProjectCard p={projects[2]} index={3} />
-          <ProjectCard p={projects[3]} index={4} />
-          <ProjectCard p={projects[4]} index={5} />
-          <ProjectCard p={projects[5]} index={6} />
+        <div className="mt-16">
+          <PortfolioGrid />
         </div>
 
         <div className="mt-24">
