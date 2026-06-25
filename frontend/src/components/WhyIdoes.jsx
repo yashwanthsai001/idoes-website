@@ -2,9 +2,9 @@ import React from "react";
 import { Target, Zap, Palette, Handshake } from "lucide-react";
 
 const features = [
-  { icon: Target, title: "One Agency, Everything Done", body: "No juggling 5 vendors. We handle design, dev, branding, and motion — all in-house." },
+  { icon: Target, title: "One Agency, Everything Done", body: "No juggling 5 vendors. We handle design, dev, branding, and motion, all in-house." },
   { icon: Zap, title: "Fast Turnaround, No Shortcuts", body: "Rapid delivery without compromising the details that make work actually good." },
-  { icon: Palette, title: "Design That Converts", body: "We don't just make things look good. We design for results — clicks, conversions, growth." },
+  { icon: Palette, title: "Design That Converts", body: "We don't just make things look good. We design for results: clicks, conversions, growth." },
   { icon: Handshake, title: "You're Not A Ticket", body: "Direct communication, honest feedback, and a team that actually cares about your business." },
 ];
 

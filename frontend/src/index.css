@@ -249,6 +249,19 @@ body {
 }
 .btn-outline-white:hover { background: #fff; color: #2457FF; border-color: #fff; }
 
+.btn-outline-dark {
+  background: transparent;
+  color: #0A0A0A;
+  padding: 16px 26px;
+  border: 1px solid #0A0A0A;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all .25s ease;
+  cursor: pointer;
+}
+.btn-outline-dark:hover { background: #0A0A0A; color: #fff; }
+
 .btn-dark {
   background: #0A0A0A;
   color: #fff;

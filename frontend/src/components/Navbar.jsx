@@ -19,6 +19,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // when at top (over light hero) → light treatment (dark text, no invert on logo)
+  // when scrolled → dark treatment (white text on black bg)
+  const onLight = !scrolled;
+
   return (
     <>
       <header
@@ -29,7 +33,11 @@ export default function Navbar() {
       >
         <div className={`max-w-[1400px] mx-auto px-6 lg:px-12 flex items-center justify-between transition-all ${scrolled ? "py-3" : "py-5"}`}>
           <a href="#top" data-testid="nav-logo" className="flex items-center gap-3">
-            <img src={LOGO_URL} alt="IDOES" className="h-9 lg:h-10 w-auto invert" />
+            <img
+              src={LOGO_URL}
+              alt="IDOES"
+              className={`h-14 lg:h-16 w-auto transition-all duration-300 ${onLight ? "" : "invert"}`}
+            />
           </a>
 
           <nav className="hidden lg:flex items-center gap-5">
@@ -38,11 +46,15 @@ export default function Navbar() {
                 <a
                   href={`#${l.id}`}
                   data-testid={`nav-link-${l.id}`}
-                  className="cta-text text-white/80 hover:text-white relative transition-colors"
+                  className={`cta-text relative transition-colors ${
+                    onLight ? "text-[#0A0A0A]/80 hover:text-[#0A0A0A]" : "text-white/80 hover:text-white"
+                  }`}
                 >
                   {l.label}
                 </a>
-                {i < links.length - 1 && <span className="text-white/30 text-sm">·</span>}
+                {i < links.length - 1 && (
+                  <span className={onLight ? "text-[#0A0A0A]/30 text-sm" : "text-white/30 text-sm"}>·</span>
+                )}
               </React.Fragment>
             ))}
           </nav>
@@ -50,7 +62,11 @@ export default function Navbar() {
           <a
             href="#contact"
             data-testid="nav-cta"
-            className="hidden lg:inline-flex cta-text border border-[#2457FF] text-white px-5 py-3 items-center gap-2 transition-all hover:bg-[#2457FF]"
+            className={`hidden lg:inline-flex cta-text border px-5 py-3 items-center gap-2 transition-all ${
+              onLight
+                ? "border-[#0A0A0A] text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-white"
+                : "border-[#2457FF] text-white hover:bg-[#2457FF]"
+            }`}
           >
             <ArrowUpRight size={14} strokeWidth={2.5} /> LET'S TALK
           </a>
@@ -58,7 +74,7 @@ export default function Navbar() {
           <button
             data-testid="nav-mobile-toggle"
             aria-label="Menu"
-            className="lg:hidden text-white"
+            className={`lg:hidden ${onLight ? "text-[#0A0A0A]" : "text-white"}`}
             onClick={() => setOpen(true)}
           >
             <Menu size={28} />
@@ -69,7 +85,7 @@ export default function Navbar() {
       {open && (
         <div data-testid="nav-mobile-overlay" className="fixed inset-0 z-[60] bg-[#0A0A0A] flex flex-col">
           <div className="flex items-center justify-between px-6 py-5 border-b border-[#222]">
-            <img src={LOGO_URL} alt="IDOES" className="h-9 invert" />
+            <img src={LOGO_URL} alt="IDOES" className="h-14 invert" />
             <button data-testid="nav-mobile-close" onClick={() => setOpen(false)} className="text-white">
               <X size={28} />
             </button>

@@ -13,12 +13,12 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#0A0A0A] pt-24 pb-10 overflow-hidden border-t border-[#222]">
       <div className="absolute -top-2 left-0 right-0 text-center ghost-text" style={{ fontSize: "clamp(120px, 22vw, 320px)" }}>
-        © 2025 — IDOES
+        © 2025  ·  IDOES
       </div>
 
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
-          <img src={LOGO_URL} alt="IDOES" className="h-12 invert" />
+          <img src={LOGO_URL} alt="IDOES" className="h-16 lg:h-20 invert" />
           {showTop && (
             <a
               href="#top"

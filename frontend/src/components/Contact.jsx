@@ -35,7 +35,7 @@ export default function Contact() {
         </h2>
 
         <p className="text-[#555] text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed">
-          Tell us what you need. We'll tell you how we'd build it — no fluff, no sales pitch.
+          Tell us what you need. We'll tell you how we'd build it. No fluff, no sales pitch.
         </p>
 
         <div className="flex flex-wrap gap-4 mt-12">

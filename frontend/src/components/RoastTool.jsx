@@ -84,7 +84,7 @@ export default function RoastTool() {
         </h2>
 
         <p className="text-[#888] text-base lg:text-lg mt-6 max-w-2xl leading-relaxed" data-testid="roast-sub">
-          Paste your URL below. We'll roast it — then tell you exactly how to fix it. Free. Instant. Brutal.
+          Paste your URL below. We'll roast it, then tell you exactly how to fix it. Free. Instant. Brutal.
         </p>
 
         <form onSubmit={submit} className="mt-12 flex flex-col lg:flex-row gap-3 max-w-3xl">

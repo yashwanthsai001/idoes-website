@@ -14,21 +14,21 @@ export const PROJECTS = [
     image: "https://customer-assets.emergentagent.com/job_idoes-preview/artifacts/16f9vsik_Cover-1.png",
     title: "SHOP.CO",
     category: "E-Commerce Website",
-    description: "A premium fashion e-commerce platform with homepage, product detail, category, and cart flows — built mobile-first.",
+    description: "A premium fashion e-commerce platform with homepage, product detail, category, and cart flows. Built mobile-first.",
     objectPosition: "center",
   },
   {
     image: "https://customer-assets.emergentagent.com/job_idoes-preview/artifacts/cjz0e82a_Thumbnail%201.png",
     title: "PAYPILOT",
     category: "Mobile App UI/UX",
-    description: "Digital banking experience for a fintech challenger — onboarding, dashboard, transactions, and 24/7 support.",
+    description: "Digital banking experience for a fintech challenger. Onboarding, dashboard, transactions, and 24/7 support.",
     objectPosition: "center",
   },
   {
     image: "https://customer-assets.emergentagent.com/job_idoes-preview/artifacts/pvthrgsn_Cover.png",
     title: "FITZ UI",
     category: "App UI System",
-    description: "A modular dark-mode component system for fintech and lifestyle apps — finance widgets, call screens, payment cards.",
+    description: "A modular dark-mode component system for fintech and lifestyle apps: finance widgets, call screens, payment cards.",
     objectPosition: "center",
   },
   {
@@ -61,7 +61,7 @@ export function ProjectCard({ project, index }) {
       <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
         <img
           src={image}
-          alt={`${title} — ${category}`}
+          alt={`${title} · ${category}`}
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.04]"
           style={{ objectPosition }}
@@ -163,7 +163,7 @@ export default function Work() {
             </h2>
           </div>
           <p className="text-[#555] text-base lg:text-lg leading-relaxed max-w-sm">
-            A selection of recent work — from rebrands and websites to apps and motion. Each piece built end-to-end, in-house.
+            A selection of recent work, from rebrands and websites to apps and motion. Each piece built end-to-end, in-house.
           </p>
         </div>
 

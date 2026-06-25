@@ -2,7 +2,7 @@ export const LOGO_URL = "https://customer-assets.emergentagent.com/job_76dcac64-
 
 export const WHATSAPP_NUMBER = "916304199686"; // no '+' or spaces
 export const WHATSAPP_DISPLAY = "+91 63041 99686";
-export const WHATSAPP_MSG = encodeURIComponent("Hi IDOES — I'd like to talk about a project.");
+export const WHATSAPP_MSG = encodeURIComponent("Hi IDOES, I'd like to talk about a project.");
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
 export const EMAIL = "idoescreative@gmail.com";
