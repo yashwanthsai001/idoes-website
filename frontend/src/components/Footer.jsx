@@ -18,7 +18,7 @@ export default function Footer() {
 
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
-          <img src={LOGO_URL} alt="IDOES" className="h-16 lg:h-20 invert" />
+          <img src={LOGO_URL} alt="IDOES" className="h-20 lg:h-24 invert" />
           {showTop && (
             <a
               href="#top"

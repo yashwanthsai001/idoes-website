@@ -44,19 +44,20 @@ export default function Hero() {
         {/* Headline */}
         <h1
           data-testid="hero-headline"
-          className="font-display text-[#0A0A0A] mt-8 mx-auto max-w-[15ch]"
-          style={{ fontSize: "clamp(46px, 8vw, 124px)", lineHeight: 0.96, letterSpacing: "-0.015em" }}
+          className="font-display text-[#0A0A0A] mt-8 mx-auto"
+          style={{ fontSize: "clamp(40px, 6.4vw, 108px)", lineHeight: 0.96, letterSpacing: "-0.015em" }}
         >
-          <span className="hero-reveal block" style={{ "--d": "120ms" }}>WE CREATE</span>
-          <span className="hero-reveal block" style={{ "--d": "220ms" }}>
-            <span className="text-[#2457FF] italic-display">STRIKING</span> CONCEPTS
+          <span className="hero-reveal block whitespace-nowrap" style={{ "--d": "120ms" }}>
+            WE CREATE <span className="text-[#2457FF] italic-display">STRIKING</span>
           </span>
-          <span className="hero-reveal block" style={{ "--d": "320ms" }}>AND BRANDING</span>
-          <span className="hero-reveal block" style={{ "--d": "420ms" }}>
-            THAT HELP YOUR
+          <span className="hero-reveal block whitespace-nowrap" style={{ "--d": "240ms" }}>
+            CONCEPTS AND BRANDING
           </span>
-          <span className="hero-reveal block" style={{ "--d": "520ms" }}>
-            BUSINESS GROW <span className="text-[#2457FF] italic-display">FASTER.</span>
+          <span className="hero-reveal block whitespace-nowrap" style={{ "--d": "360ms" }}>
+            THAT HELP YOUR BUSINESS
+          </span>
+          <span className="hero-reveal block whitespace-nowrap" style={{ "--d": "480ms" }}>
+            <span className="text-[#2457FF] italic-display">GROW FASTER.</span>
           </span>
         </h1>
 

@@ -36,7 +36,7 @@ export default function Navbar() {
             <img
               src={LOGO_URL}
               alt="IDOES"
-              className={`h-14 lg:h-16 w-auto transition-all duration-300 ${onLight ? "" : "invert"}`}
+              className={`h-16 lg:h-20 w-auto transition-all duration-300 ${onLight ? "" : "invert"}`}
             />
           </a>
 
@@ -85,7 +85,7 @@ export default function Navbar() {
       {open && (
         <div data-testid="nav-mobile-overlay" className="fixed inset-0 z-[60] bg-[#0A0A0A] flex flex-col">
           <div className="flex items-center justify-between px-6 py-5 border-b border-[#222]">
-            <img src={LOGO_URL} alt="IDOES" className="h-14 invert" />
+            <img src={LOGO_URL} alt="IDOES" className="h-16 invert" />
             <button data-testid="nav-mobile-close" onClick={() => setOpen(false)} className="text-white">
               <X size={28} />
             </button>
