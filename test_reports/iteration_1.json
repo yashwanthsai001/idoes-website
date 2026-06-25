@@ -1,0 +1,24 @@
+{
+  "summary": "First-finish smoke pass complete. All backend endpoints and the full E2E flow (homepage, navbar, AI Roast tool, Services hover, Estimator, Before/After, WhatsApp float, scroll-to-top, mobile menu) work as expected. POST /api/roast returns valid JSON with 8 categories and persists; the UI completes the full roast flow end-to-end with score ring + cards visible.",
+  "tested_scope": ["backend", "frontend", "integration"],
+  "passed": [
+    "GET /api/ returns 200 with {message:'IDOES API', status:'ok'}",
+    "POST /api/roast {url:'stripe.com'} returns 200 in ~36s with integer score (88), non-empty verdict & roast, 8 categories with id/label/icon/headline/advice/severity in [critical|warning|good]",
+    "POST /api/roast {url:''} returns 400 with 'URL is required'",
+    "POST /api/leads returns 200 with {id, ok:true}; roast also persists (returns id)",
+    "Homepage loads, boot screen disappears, hero shows 'WE DON'T JUST BUILD WEBSITES. WE BUILD RESULTS.'",
+    "Navbar shows WORK/SERVICES/ABOUT/CONTACT + LET'S TALK",
+    "E2E roast: input → submit → loading state → roast-result with 8 roast-card-* tiles",
+    "Services hover (service-row-2) works",
+    "Estimator 3-step flow shows result with ₹ price range",
+    "Before/After handle present",
+    "WhatsApp float visible",
+    "Scroll-top button appears after scrolling",
+    "Mobile (375x812): nav-mobile-toggle opens nav-mobile-overlay"
+  ],
+  "failed": [],
+  "action_items": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true
+}
