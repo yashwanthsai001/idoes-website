@@ -77,11 +77,11 @@ export default function BeforeAfter() {
 
   return (
     <div data-testid="before-after">
-      <p className="section-label">[ CASE STUDY ]</p>
-      <h3 className="font-display text-white mt-4" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
+      <p className="section-label-dark">[ CASE STUDY ]</p>
+      <h3 className="font-display text-[#0A0A0A] mt-4" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
         BEFORE<span className="text-[#2457FF]"> · </span>AFTER
       </h3>
-      <p className="text-[#888] text-sm lg:text-base mt-3 max-w-xl">Drag the handle to see how we turned a cluttered 2014-era store into a premium 2026 brand.</p>
+      <p className="text-[#555] text-sm lg:text-base mt-3 max-w-xl">Drag the handle to see how we turned a cluttered 2014-era store into a premium 2026 brand.</p>
 
       <div
         ref={ref}
