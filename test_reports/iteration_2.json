@@ -1,0 +1,37 @@
+{
+  "summary": "Regression after package.json dependency overhaul (react-day-picker v9, axios ^1.7.7, ajv ^8.12.0, .npmrc legacy-peer-deps, nth-check overrides). All targeted regressions PASS: production npm build still 'Compiled successfully', backend /api/ + /api/roast + /api/leads + /api/status all working, frontend dev server (yarn-installed node_modules) still renders identically with full E2E roast flow (score=88, 8 cards) and zero console errors.",
+  "tested_scope": ["backend", "frontend", "integration", "production-build"],
+  "passed": [
+    "GET /api/ -> 200 {message:'IDOES API', status:'ok'}",
+    "POST /api/roast {url:'stripe.com'} -> 200 in ~34s with integer score (0-100), non-empty verdict/roast, exactly 8 categories with required ids (ux-usability, visual-hierarchy, mobile-responsiveness, performance, conversion-optimization, branding-trust, accessibility, overall-verdict) and severities in {critical,warning,good}",
+    "POST /api/roast {url:''} -> 400 'URL is required'",
+    "POST /api/leads -> 200 {id, ok:true}",
+    "POST /api/status + GET /api/status round-trip (data persisted, no ObjectId leak)",
+    "Frontend dev server loads at preview URL with no boot-screen hang",
+    "Navbar shows WORK/SERVICES/ABOUT/CONTACT links",
+    "Sections #about, #services, #work, #contact all present in DOM",
+    "Roast E2E: fill roast-input → click roast-submit → roast-result appears → 8 roast-card-* tiles render",
+    "Zero console errors/warnings on full E2E flow",
+    "Production build: cd /tmp/idoes-build-test && CI=false npm run build → 'Compiled successfully' (only benign Tailwind arbitrary-value warnings about duration-[1100ms] / ease-[cubic-bezier(...)] — pre-existing, not caused by dep changes)",
+    "react-day-picker v9 + date-fns v4 + ajv v8 combo builds cleanly under Node 20 with legacy-peer-deps (React 19 peer conflict resolved via .npmrc)"
+  ],
+  "failed": [],
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/test_idoes_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Minor: server.py defines `logger` AFTER the @api_router.post('/roast') handler that references it inside the except block. The basicConfig call happens at import time below, but the NameError will only manifest if the LLM call fails before logger is assigned. Recommend moving `logger = logging.getLogger(__name__)` and basicConfig above the route definitions for safety.",
+    "Minor: /api/roast persists doc with `created_at` as isoformat string but the same object's `created_at` field on the response is a datetime — slight type drift between API response and DB row (not user-facing)."
+  ],
+  "updated_files": ["/app/backend/tests/test_idoes_api.py"],
+  "success_rate": {"backend": "100% (5/5)", "frontend": "100%"},
+  "test_credentials": "Not required — public endpoints.",
+  "seed_data_creation": "Created TEST_ prefixed lead + status_checks rows during pytest run; no cleanup endpoint exposed (acceptable for prefix-tagged regression data).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Reusable pytest file at /app/backend/tests/test_idoes_api.py covers all 5 API endpoints incl. happy-path roast with full schema validation. Frontend dev server uses yarn node_modules; the npm-installed bundle for build verification lives at /tmp/idoes-build-test (run `cd /tmp/idoes-build-test && CI=false npm run build`)."
+}
